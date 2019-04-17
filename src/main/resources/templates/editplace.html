@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ryhmän muokkaus</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+	body {
+			padding-left: 20px;
+		}
+		form {
+		position: relitive;
+		width: 400px;
+		
+		padding: 15px;}
+	label {	display: inline-block;
+				width: 8em;
+				font-family: verdana;
+				font-size: 13px;
+                color: black;
+				vertical-align:center;
+                text-align: right;
+				}
+	input[type=submit] {
+			 padding: 5px 5px;
+  
+  border-radius: 4px;
+  cursor: pointer;
+			 float: right;
+			 
+			}
+			.container {
+			  width: 400px;
+			  border-radius: 5px;
+			  background-color: #f2f2f2;
+			  padding: 25px;
+			}
+</style>
+</head>
+<body>
+	<h1>Muuta harjoituspaikan tietoja</h1>
+	
+	<div class="container">
+		<form th:action="@{/saveplace}" action="#" method="post" >
+		  	<input type="hidden" th:field="*{place.placeId}" />
+		  	<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="name">Paikan nimi</label>
+			<input type="text" id="name" size="30px" th:field="*{place.name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="address">Paikan osoite</label>
+			<input type="text" id="address" size="30px" th:field="*{place.address}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	    		
+			<input id="button" type="submit" value="Tallenna" ></input>
+		</form>
+	</div>
+</body>
+</html>

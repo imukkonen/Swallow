@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Ohjaajat</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+		  		<nav>
+  		<div class="container-fluid">
+    <!--Sivuston nimi ja nappi mobiiliin-->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar" style="color: blue; font-weight:bold;">Valikko</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index">Tanssikerho Swallow</a>
+    </div>
+ 
+    <!-- valikko -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/grouplist">Harjoitusryhmät</a></li>
+        <li><a href="/placelist">Harjoituspaikat</a></li>
+        <li><a href="/instructorlist">Ohjaajat</a></li>
+        
+      </ul> 
+ 	  <ul class="nav navbar-nav navbar-right">
+        <li><div sec:authorize="isAuthenticated()">
+        		
+        		<form th:action="@{/logout}" method="post">
+					<input type="submit" value="Kirjaudu ulos" class="btn btn-sm btn-danger"/>
+				</form>
+				<spin th:inline="text">Olet kirjautunut nimellä [[${#httpServletRequest.remoteUser}]]</spin>
+        		</div>
+        	<div sec:authorize="isAnonymous()">
+					<button class="btn btn-sm btn-success" OnClick="location.href='/login'" />Kirjaudu sisään</button>
+        	</div>
+        	</li>
+      </ul>   
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	<div class="container">
+		<h3>Ohjaajat</h3>
+	<table class="table table-striped">
+		<tr>
+		    <th>Nimi</th>
+		    <th>Sukunimi</th>
+		    <th>Harjoitusryhmät</th>
+		    <th sec:authorize="hasAuthority('ADMIN')">Poista</th>
+		    <th sec:authorize="hasAuthority('ADMIN')">Muokata</th>
+		</tr>  
+    	<tr th:each = "instructor : ${instructors}">
+    		<td th:text="${instructor.firstName}"></td>
+    		<td th:text="${instructor.lastName}"></td>
+    		<td ><a th:href="@{/instructorgroups/{id}(id=${instructor.instructorId})}" class="btn btn-success">Harjoitusryhmät</button></td>   
+    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteinstructor/{id}(id=${instructor.instructorId})}" class="btn btn-danger">Poista</button></td>   
+ 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editinstructor/{id}(id=${instructor.instructorId})}" class="btn btn-success">Muokkaa</button></td>  
+ 			 		
+    	</tr>
+     </table>
+     <br />
+	<p sec:authorize="hasAuthority('ADMIN')"><button class="btn btn-success" OnClick="location.href='/addinstructor'">Lisä uusi ohjaaja</button>	
+	</div>	
+</body>
+</html>

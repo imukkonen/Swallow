@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Uusi harrasteryhmä</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+	body {
+			padding-left: 20px;
+		}
+		form {
+		position: relitive;
+		width: 400px;
+		
+		padding: 15px;}
+	label {	display: inline-block;
+				width: 8em;
+				font-family: verdana;
+				font-size: 13px;
+                color: black;
+				vertical-align:center;
+                text-align: right;
+				}
+	input[type=submit] {
+			 padding: 5px 5px;
+  
+  border-radius: 4px;
+  cursor: pointer;
+			 float: right;
+			 
+			}
+			.container {
+			  width: 400px;
+			  border-radius: 5px;
+			  background-color: #f2f2f2;
+			  padding: 25px;
+			}
+</style>
+</head>
+<body>
+	<h1>Lisää uusi tanssiryhmä</h1>
+	<div class="container">
+		<form th:object="${group}" th:action="@{save}" action="#" method="post">
+		  	<label for="name">Ryhmän nimi</label>
+			<input type="text" id="name" size="30px" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="age">Harrastajan ikä</label>
+			<input type="text" id="age" size="30px" th:field="*{age}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="description">Kuvaus</label>
+			<textarea cols ="30" rows="3" th:field="*{description}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="timetable">Aikataulu</label>
+			<input type="text" id="timetable" th:field="*{timetable}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="price">Hinta</label>
+			<input type="text" th:field="*{price}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="quantity">Harrastajan määrä</label>
+			<input type="text" th:field="*{quantity}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="freeplaces">Vapaita paikkoja</label>
+			<input type="text" th:field="*{freeplaces}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="placelist">Harjoituspaikka</label>
+			 <select id="placelist" th:field="*{place}" class="form-control">
+       			<option th:each="place: ${places}" th:value="${place.placeId}" th:text="${place.name}"></option>
+    		</select>
+    		<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="instructorlist">Ohjaaja</label>
+			 <select id="instructorlist" th:field="*{instructor}" class="form-control">
+       			<option th:each="instructor: ${instructors}" th:value="${instructor.instructorId}" th:text="${instructor.firstName}+ ' ' + ${instructor.LastName}"></option>
+    		</select>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input id="button" type="submit" value="Tallenna" ></input>
+		</form>
+	</div>
+</body>
+</html>

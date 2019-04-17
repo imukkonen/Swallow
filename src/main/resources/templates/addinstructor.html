@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Uusi ohjaaja</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+<style>
+	body {
+			padding-left: 20px;
+		}
+		form {
+		position: relitive;
+		width: 400px;
+		
+		padding: 15px;}
+	label {	display: inline-block;
+				width: 8em;
+				font-family: verdana;
+				font-size: 13px;
+                color: black;
+				vertical-align:center;
+                text-align: right;
+				}
+	input[type=submit] {
+			 padding: 5px 5px;
+  
+  border-radius: 4px;
+  cursor: pointer;
+			 float: right;
+			 
+			}
+			.container {
+			  width: 400px;
+			  border-radius: 5px;
+			  background-color: #f2f2f2;
+			  padding: 25px;
+			}
+</style>
+</head>
+<body>
+			<div style="padding:20px 20px 0 0">
+				<button class="btn btn-sm btn-success" onclick="javascript:history.back()">Takaisin</button>
+			</div>
+	<h1>Lisä uusi ohjaaja</h1>
+	<div class="container">
+		<form th:object="${instructor}" th:action="@{saveinstructor}" action="#" method="post">
+		  	<label for="firstName">Etunimi</label>
+			<input type="text" id="firstName" size="30px" th:field="*{firstName}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="lastName">Sukunimi</label>
+			<input type="text" id="lastName" size="30px" th:field="*{lastName}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<input id="button" type="submit" value="Tallenna" ></input>
+		</form>
+	</div>
+</body>
+</html>

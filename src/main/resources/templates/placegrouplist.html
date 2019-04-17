@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Tanssiryhmät</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9" style="padding:20px 20px 0 0">
+				<button class="btn btn-sm btn-success" onclick="javascript:history.back()">Takaisin</button>
+			</div>
+			
+			<div class="col-sm-3" style="padding:20px 0" >
+				<form th:action="@{/logout}" method="post">
+					<input type="submit" value="Kirjaudu ulos" class="btn btn-sm btn-danger"/>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-8">
+			<h2>Harjoittelupaikan <spin th:text="${place.name}"></spin> tanssiryhmät</h2>
+		</div>
+		
+		
+	</div>
+		
+    <table class="table table-striped">
+		<tr>
+		    <th>Nimi</th>
+		    <th>Harjoituspaikka</th>
+		    <th>Aikataulu</th>
+		    <th>Kuvaus</th>
+		    <th>Hinta</th>
+		    <th>Paikkoja ryhmässä</th>
+		    <th>Vapaita paikkoja</th>
+		    <th>Ohjaaja</th>
+		    
+		</tr>  
+    	<tr th:each = "group : ${groups}">
+    		<td th:text="${group.name} +' ' + ${group.age}"></td>
+    		<td th:text="${group.place.name}"></td>
+    		<td th:text="${group.timetable}"></td>
+    		<td th:text="${group.description}"></td>
+    		<td th:text="${group.price}"></td>
+    		<td th:text="${group.quantity}"></td>
+    		<td th:text="${group.freeplaces}"></td>
+    		<td th:text="${group.instructor.firstName}+' ' +${group.instructor.lastName}"></td>
+    		
+ 			 		
+    	</tr>
+     </table>
+     <br />
+	
+	</div>	
+</body>
+</html>
