@@ -46,28 +46,11 @@
 	<div class="container">
 		<h3>Tarkista harjoittelijan tietoja</h3>
 			<div class="container">
-		<form th:action="@{/saveuser}" action="#" method="post" >
-		  	<input type="hidden" th:field="*{user.userId}" />
-		  	<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="firstName">Etunimi</label>
-			<input type="text" id="firstName" size="30px" th:field="*{user.firstName}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="lastName">Sukunimi</label>
-			<input type="text" id="lastName" size="30px" th:field="*{user.lastName}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="email">Sähköposti</label>
-			<input type="text" id="email" size="30px" th:field="*{user.email}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="birhYear">Syntymävuosi</label>
-			<input type="text" id="birthYear" size="30px" th:field="*{user.birthYear}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	    		
-			<input id="button" type="submit" value="Tallenna" ></input>
-		</form>
+		<span th:text="*{userinfo}"></span>
 	</div>
      
      <br />
-	<a th:href="@{/edituser/{id}(id=${user.userId})}" class="btn btn-success">Muokkaa</button></td> 	
+		
 	</div>	
 </body>
 </html>

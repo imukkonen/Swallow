@@ -98,6 +98,14 @@ public class DancegroupController {
 	    	return "groupuserlist";
 	    }
 		
+		@RequestMapping(value ="/userinfo", method=RequestMethod.GET)
+		public String findUserInfo(Model model, Principal principal) {
+			String name=principal.getName();
+			User user1 =urepository.findByUsername(name);
+			model.addAttribute("userinfo", user1.toString());
+			return "user";
+		}
+		
 //-------------harjoituspaikan osa ----------------------------//
 	
 		//kaikki harjoituspaikat
