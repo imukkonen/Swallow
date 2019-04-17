@@ -31,22 +31,21 @@
     <!-- valikko -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/grouplist">Harjoitusryhmät</a></li>
+        <li class="active"><a href="/grouplist" th:text="#{menu.groups}"></a></li>
         <li><a href="/placelist">Harjoituspaikat</a></li>
         <li><a href="/instructorlist">Ohjaajat</a></li>
         
       </ul> 
  	  <ul class="nav navbar-nav navbar-right">
-      <!-- 
+      
        <li>
 	       <span th:text="#{language.change}"></span>:
 			<select id="locales">
-			    <option value=""></option>
 			    <option value="EN" th:text="#{lang.eng}"></option>
 			    <option value="FI" th:text="#{lang.fi}"></option>
 			</select>
        </li>
-        -->
+       
         <li><div sec:authorize="isAuthenticated()">
         		
         		<form th:action="@{/logout}" method="post">
